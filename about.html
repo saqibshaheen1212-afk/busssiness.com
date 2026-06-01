@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Elite Estate</title>
+    <style>
+        /* Shared Style Variables */
+        :root {
+            --primary: #0f172a;
+            --accent: #d97706;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Sub-Header / Page Title */
+        .page-title-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .page-title-section h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        /* Story Section */
+        .story-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-img {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .story-content h2 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .story-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* Stats Grid */
+        .stats-section {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card h3 {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #cbd5e1;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Team Section */
+        .team-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .team-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .team-img {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .team-info {
+            padding: 20px;
+        }
+
+        .team-info h3 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .team-info p {
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .story-section {
+                grid-template-columns: 1fr;
+            }
+            .story-img {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Elite<span>Estate</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="page-title-section">
+        <h1>About Elite Estate</h1>
+        <p>Learn more about our journey, values, and expert team of dealers.</p>
+    </section>
+
+    <section class="story-section">
+        <div class="story-img"></div>
+        <div class="story-content">
+            <h2>Guiding You to the Perfect Address</h2>
+            <p>Founded on transparency, excellence, and deep market expertise, Elite Estate has grown into one of the region's most trusted property dealerships. We close the gap between premium properties and buyers looking for high-yielding commercial assets or beautiful residential sanctuaries.</p>
+            <p>Our philosophy is straightforward: property dealing shouldn't be stressful. We handle the heavy lifting, legal checkpoints, and valuation mapping so you can confidently focus on making great real estate investments.</p>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>12+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-card">
+                <h3>1.5k+</h3>
+                <p>Properties Sold</p>
+            </div>
+            <div class="stat-card">
+                <h3>450+</h3>
+                <p>Happy Renters</p>
+            </div>
+            <div class="stat-card">
+                <h3>25+</h3>
+                <p>Industry Awards</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2>Meet Our Agents</h2>
+        <p class="team-subtitle">Dedicated property experts looking out for your best interests</p>
+        
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80');"></div>
+                <div class="team-info">
+                    <h3>Marcus Vance</h3>
+                    <p>Principal Dealer & Founder</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80');"></div>
+                <div class="team-info">
+                    <h3>Sarah Jenkins</h3>
+                    <p>Luxury Residential Consultant</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80');"></div>
+                <div class="team-info">
+                    <h3>David Miller</h3>
+                    <p>Commercial Property Analyst</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 EliteEstate Dealers. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

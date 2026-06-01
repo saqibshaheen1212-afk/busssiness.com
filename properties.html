@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Properties | Elite Estate</title>
+    <style>
+        /* Shared Style Variables with Homepage */
+        :root {
+            --primary: #0f172a;
+            --accent: #d97706;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Sub-Header / Page Title */
+        .page-title-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .page-title-section h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        /* Main Content Layout */
+        .properties-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+
+        /* Filter Sidebar */
+        .filter-sidebar {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            height: fit-content;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .filter-sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .filter-group select, .filter-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            outline: none;
+            color: var(--text-dark);
+        }
+
+        .filter-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--accent);
+        }
+
+        /* Properties Grid */
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .property-content {
+            padding: 20px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .property-title {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .location {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 900px) {
+            .properties-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Elite<span>Estate</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html" class="active">Properties</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="page-title-section">
+        <h1>Available Properties</h1>
+        <p>Explore our wide selection of premium residential and commercial spaces.</p>
+    </section>
+
+    <div class="properties-container">
+        
+        <aside class="filter-sidebar">
+            <h2>Filter Properties</h2>
+            <form>
+                <div class="filter-group">
+                    <label>Keyword</label>
+                    <input type="text" placeholder="e.g., Beachfront, Pool...">
+                </div>
+                <div class="filter-group">
+                    <label>Location</label>
+                    <select>
+                        <option>All Cities</option>
+                        <option>Los Angeles</option>
+                        <option>New York</option>
+                        <option>Texas</option>
+                        <option>Miami</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Status</label>
+                    <select>
+                        <option>Any Status</option>
+                        <option>For Sale</option>
+                        <option>For Rent</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Max Price</label>
+                    <select>
+                        <option>No Limit</option>
+                        <option>$200,000</option>
+                        <option>$500,000</option>
+                        <option>$1,000,000+</option>
+                    </select>
+                </div>
+                <button type="button" class="filter-btn">Apply Filters</button>
+            </form>
+        </aside>
+
+        <main class="property-grid">
+            
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Sale</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$450,000</div>
+                    <h3 class="property-title">Modern Luxury Villa</h3>
+                    <p class="location">📍 Beverly Hills, Los Angeles</p>
+                    <div class="details"><span>🛏️ 4 Bds</span><span>🛁 3 Bth</span><span>📐 2,800 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Rent</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$2,500 / mo</div>
+                    <h3 class="property-title">Contemporary Apartment</h3>
+                    <p class="location">📍 Downtown Manhattan, NY</p>
+                    <div class="details"><span>🛏️ 2 Bds</span><span>🛁 2 Bth</span><span>📐 1,200 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Sale</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$890,000</div>
+                    <h3 class="property-title">Grand Suburban Estate</h3>
+                    <p class="location">📍 Oakridge Estates, Texas</p>
+                    <div class="details"><span>🛏️ 5 Bds</span><span>🛁 4 Bth</span><span>📐 4,500 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Sale</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$1,200,000</div>
+                    <h3 class="property-title">Ultra Modern Smart Home</h3>
+                    <p class="location">📍 Sunset Strip, Los Angeles</p>
+                    <div class="details"><span>🛏️ 4 Bds</span><span>🛁 5 Bth</span><span>📐 5,100 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Rent</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$1,800 / mo</div>
+                    <h3 class="property-title">Minimalist Urban Loft</h3>
+                    <p class="location">📍 Brooklyn, New York</p>
+                    <div class="details"><span>🛏️ 1 Bd</span><span>🛁 1 Bth</span><span>📐 850 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Sale</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$310,000</div>
+                    <h3 class="property-title">Charming Family Cottage</h3>
+                    <p class="location">📍 Austin Suburbs, Texas</p>
+                    <div class="details"><span>🛏️ 3 Bds</span><span>🛁 2 Bth</span><span>📐 1,950 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Rent</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$4,200 / mo</div>
+                    <h3 class="property-title">Ocean View Penthouse</h3>
+                    <p class="location">📍 Brickell, Miami</p>
+                    <div class="details"><span>🛏️ 3 Bds</span><span>🛁 3 Bth</span><span>📐 2,200 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Sale</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$625,000</div>
+                    <h3 class="property-title">Classic Brick Townhouse</h3>
+                    <p class="location">📍 Boston City Center</p>
+                    <div class="details"><span>🛏️ 3 Bds</span><span>🛁 2.5 Bth</span><span>📐 2,400 sqft</span></div>
+                </div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Sale</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$2,400,000</div>
+                    <h3 class="property-title">Commercial Headquarters Plaza</h3>
+                    <p class="location">📍 Financial District, NY</p>
+                    <div class="details"><span>🛏️ 0 Bds</span><span>🛁 12 Bth</span><span>📐 15,000 sqft</span></div>
+                </div>
+            </div>
+
+              <div class="property-card">
+                <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=80');">
+                    <span class="badge">For Sale</span>
+                </div>
+                <div class="property-content">
+                    <div class="price">$890,000</div>
+                    <h3 class="property-title">Grand Suburban Estate</h3>
+                    <p class="location">📍 Oakridge Estates, Texas</p>
+                    <div class="details"><span>🛏️ 5 Bds</span><span>🛁 4 Bth</span><span>📐 4,500 sqft</span></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 EliteEstate Dealers. All rights reserved.</p>
+    </footer>
+
+<script>
+        document.querySelector('.filter-btn').addEventListener('click', function() {
+            // 1. Target the inputs securely using simple, absolute selectors
+            const keywordInput = document.querySelector('.filter-sidebar input');
+            const selects = document.querySelectorAll('.filter-sidebar select');
+            
+            // Safeguard: If elements aren't found, stop the script safely instead of crashing
+            if (!keywordInput || selects.length < 3) {
+                console.error("Filter elements missing in HTML structure.");
+                return;
+            }
+
+            const keyword = keywordInput.value.toLowerCase();
+            const location = selects[0].value;
+            const status = selects[1].value;
+            const maxPriceStr = selects[2].value;
+
+            // Convert max price selection to a raw number
+            let maxPrice = Infinity;
+            if (maxPriceStr !== 'No Limit') {
+                maxPrice = parseInt(maxPriceStr.replace(/[^0-9]/g, ''), 10);
+            }
+
+            // 2. Loop through every single property card on the page
+            const cards = document.querySelectorAll('.property-card');
+            
+            cards.forEach(card => {
+                const titleEl = card.querySelector('.property-title');
+                const locationEl = card.querySelector('.location');
+                const badgeEl = card.querySelector('.badge');
+                const priceEl = card.querySelector('.price');
+
+                // Skip processing if a card is malformed
+                if (!titleEl || !locationEl || !badgeEl || !priceEl) return;
+
+                const title = titleEl.textContent.toLowerCase();
+                const cardLocation = locationEl.textContent;
+                const cardStatus = badgeEl.textContent;
+                const priceText = priceEl.textContent;
+                
+                // Convert card price string into a raw number
+                const cardPrice = parseInt(priceText.replace(/[^0-9]/g, ''), 10);
+
+                // 3. Check if the property matches what the user is looking for
+                const matchesKeyword = title.includes(keyword);
+                const matchesLocation = (location === 'All Cities') || cardLocation.includes(location);
+                const matchesStatus = (status === 'Any Status') || (cardStatus.trim().toLowerCase() === status.trim().toLowerCase());
+                const matchesPrice = cardPrice <= maxPrice;
+
+                // 4. Show or hide based on matches
+                if (matchesKeyword && matchesLocation && matchesStatus && matchesPrice) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
